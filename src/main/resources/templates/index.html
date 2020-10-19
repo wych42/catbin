@@ -1,28 +1,32 @@
-<div layout:decorator="base">
-    <div layout:fragment="body">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<div layout:fragment="content">
 <pre>
-vinergy(1)                         VINERGY                           vinergy(1)
+catbin(1)                         CATBIN                           catbin(1)
 
 NAME
-    Vinergy: CLI Pastebin within VimEnergy
+    Cat: CLI Pastebin by Spring
 
 SYNOPSIS
-    &lt;command&gt; | curl -F 'cat=<-' <span th:text="${url}" th:remove="tag" />
+    &lt;command&gt; | curl -F 'cat=<-' <span th:text="${url}" th:remove="tag"/>
 
 DESCRIPTION
     add <a href='http://pygments.org/docs/lexers/'>?&lt;lang&gt;</a> or <a href='http://pygments.org/docs/lexers/'>/&lt;lang&gt;</a> to resulting url for line numbers and syntax
     highlighting
 
 EXAMPLES
-    <span style="color:#ffc000" >~</span> % curl -T bin/code.js  <span th:text="${url}" th:remove="tag" />
+    <span style="color:#ffc000">~</span> % curl -T bin/code.js  <span th:text="${url}" th:remove="tag"/>
        {{ url }}cbc
 
-    <span style="color:#ffc000" >~</span> % cat bin/code.js | curl -F 'cat=&lt;-'  <span th:text="${url}" th:remove="tag" />
+    <span style="color:#ffc000">~</span> % cat bin/code.js | curl -F 'cat=&lt;-'  <span th:text="${url}"
+                                                                                        th:remove="tag"/>
        {{ url }}cbc
 
-    <span style="color:#ffc000" >~</span> % curl  <span th:text="${url}+'cbc/js'" th:remove="tag" />
-    <span style="color:#ffc000" >~</span> % wget -qO-  <span th:text="${url}+'cbc?js'" th:remove="tag" />
-    <span style="color:#ffc000" >~</span> % firefox  <span th:text="${url}+'cbc/js'" th:remove="tag" />
+    <span style="color:#ffc000">~</span> % curl  <span th:text="${url}+'cbc/js'" th:remove="tag"/>
+    <span style="color:#ffc000">~</span> % wget -qO-  <span th:text="${url}+'cbc?js'" th:remove="tag"/>
+    <span style="color:#ffc000">~</span> % firefox  <span th:text="${url}+'cbc/js'" th:remove="tag"/>
 
 VERSION
     0.10
@@ -31,9 +35,11 @@ SEE ALSO
     Origin(Python): <a href="https://github.com/Vim-cn/vinergy">https://github.com/Vim-cn/vinergy</a>
 
 POWERED BY
-    <a href="https://www.spring.io/" target="_blank"><img height="75px" src="/spring.svg" align="absmiddle" border="0"></a> &nbsp; <a href="https://www.postgresql.org/" target="_blank"><img src="/postgresql.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://pygments.org" target="_blank"><img src="/pygments.png" align="absmiddle" border="0"></a>
+    <a href="https://www.spring.io/" target="_blank"><img height="75px" src="/spring.svg" align="absmiddle" border="0"></a> &nbsp; <a
+        href="https://www.postgresql.org/" target="_blank"><img src="/postgresql.png" align="absmiddle" border="0"></a> &nbsp; <a
+        href="http://pygments.org" target="_blank"><img src="/pygments.png" align="absmiddle" border="0"></a>
 
-                                 29 Jan 2019                         vinergy(1)
+                                 20 Oct 2020                         catbin(1)
 </pre>
-    </div>
 </div>
+</html>

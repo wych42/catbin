@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<meta charset="UTF-8"/>
+<title>Cat - CLI Pastebin within Spring</title>
+<link rel='shortcut icon' href="/favicon.ico" type="image/x-icon"/>
+
+<div th:if="${#httpServletRequest.requestURI}=='/'">
+    <!--[if lt IE 10]>
+    <script type="text/javascript">
+        if (confirm('你的浏览器不支持显示本页内容，点击“确定”去下载火狐，点击“取消”下载谷歌浏览器。'){
+            window.location = 'http://www.mozilla.com/en-US/firefox/all.html';
+        } else {
+            window.location = 'http://www.google.com/chrome';
+        }
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=http://www.mozilla.com/en-US/firefox/all.html"/>
+    </noscript>
+    <![endif]-->
+</div>
+
+<th:block layout:fragment="content"></th:block>
+
+<!-- Start Google Analytics tracking code -->
+<!-- End Google Analytics tracking code -->
+<footer>
+    <th:block layout:fragment="footer"></th:block>
+</footer>
+</html>

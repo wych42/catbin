@@ -1,8 +1,15 @@
-{% extends 'base.html' %}
-{% block page %}
-<div class="highlight">
-  {% raw code %}
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<div layout:fragment="content">
+<pre><code th:class="${syntax}">
+<p th:text="${code}" th:remove="tags"/>
+</code></pre>
 </div>
-<script type="text/javascript" src="/static/code.js"></script>
-{% end %}
-{# vim:se ft=html syntax=html.tornadotmpl: #}
+
+<footer layout:fragment="footer">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/default.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</footer>
+</html>
