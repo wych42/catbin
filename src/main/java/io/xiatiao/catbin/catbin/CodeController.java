@@ -1,13 +1,19 @@
 package io.xiatiao.catbin.catbin;
 
+import com.google.common.base.Strings;
 import com.google.common.hash.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.ServletWebRequest;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.nio.charset.StandardCharsets;
 
@@ -15,6 +21,28 @@ import java.nio.charset.StandardCharsets;
 public class CodeController {
     @Autowired
     private CustomCodeRepository codeRepository;
+
+    @GetMapping(value="/")
+    public String index(WebRequest request, Model model){
+        String url = ((ServletWebRequest) request).getRequest().getRequestURL().toString();
+        String protocol = request.getHeader("x-forwarded-proto");
+        if (Strings.isNullOrEmpty(protocol)) {
+            protocol = request.getHeader("x-forwarded-protocol");
+        }
+        if (Strings.isNullOrEmpty(protocol)) {
+            String forwardedSsl = request.getHeader("x-forwarded-ssl");
+            if (!Strings.isNullOrEmpty(forwardedSsl) && forwardedSsl.equals("on")) {
+                protocol = "https";
+            }
+        }
+        if (Strings.isNullOrEmpty(protocol)) {
+            protocol = "http";
+        }
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        url =  builder.scheme(protocol).toUriString();
+        model.addAttribute("url", url);
+        return "index";
+    }
 
     @PostMapping(path = "/")
     @ResponseBody
