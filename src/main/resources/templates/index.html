@@ -7,7 +7,7 @@
 catbin(1)                         CATBIN                           catbin(1)
 
 NAME
-    Cat: CLI Pastebin by Spring
+    Catbin: CLI Pastebin for /bin/cat by Spring
 
 SYNOPSIS
     &lt;command&gt; | curl -F 'cat=<-' <span th:text="${url}" th:remove="tag"/>
@@ -18,15 +18,13 @@ DESCRIPTION
 
 EXAMPLES
     <span style="color:#ffc000">~</span> % curl -T bin/code.js  <span th:text="${url}" th:remove="tag"/>
-       {{ url }}cbc
+       <span th:text="${url}+42" th:remove="tag"/>
 
-    <span style="color:#ffc000">~</span> % cat bin/code.js | curl -F 'cat=&lt;-'  <span th:text="${url}"
-                                                                                        th:remove="tag"/>
-       {{ url }}cbc
+    <span style="color:#ffc000">~</span> % cat bin/code.js | curl -F 'cat=&lt;-'  <span th:text="${url}" th:remove="tag"/>
+       <span th:text="${url}+42" th:remove="tag"/>
 
-    <span style="color:#ffc000">~</span> % curl  <span th:text="${url}+'cbc/js'" th:remove="tag"/>
-    <span style="color:#ffc000">~</span> % wget -qO-  <span th:text="${url}+'cbc?js'" th:remove="tag"/>
-    <span style="color:#ffc000">~</span> % firefox  <span th:text="${url}+'cbc/js'" th:remove="tag"/>
+    <span style="color:#ffc000">~</span> % curl  <span th:text="${url}+'42/js'" th:remove="tag"/>
+    <span style="color:#ffc000">~</span> % firefox  <span th:text="${url}+'42/js'" th:remove="tag"/>
 
 VERSION
     0.10

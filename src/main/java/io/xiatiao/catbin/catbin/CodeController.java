@@ -16,6 +16,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -50,6 +52,17 @@ public class CodeController {
         return "index";
     }
 
+    private List<String> terminalUA = Arrays.asList("wget", "curl");
+
+    private boolean isTerminal(String ua) {
+        for (String tua : terminalUA) {
+            if (ua.contains(tua)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @GetMapping(value = {"/{id:\\d+}", "/{id:\\d+}/{syntax:[a-z]+}"})
     public String index(WebRequest request, Model model,
                         HttpServletResponse response,
@@ -59,8 +72,8 @@ public class CodeController {
         if (c.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, id.toString() + " not found");
         }
-        System.out.println("syntax:"+syntax);
-        if (syntax == null) {
+        String ua = request.getHeader("User-Agent");
+        if (syntax == null || ua == null || isTerminal(ua)) {
             model.addAttribute("code", c.get().getContent());
             HttpHeaders rh = new HttpHeaders();
             response.addHeader("Content-Type", "text/plain; charset=utf-8");
