@@ -9,6 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
       MYSQL_DATABASE: "${DB_NAME}"
+    labels:
+      - "traefik.enable=false"
 
   catbin:
     image: "${IMAGE}"
@@ -21,6 +23,7 @@ services:
       - 8080
     networks:
       - catbin
+      - traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.catbin.rule=Host(`${DOMAIN}`)"
@@ -32,5 +35,3 @@ networks:
   traefik:
     external: true
   catbin:
-
-
