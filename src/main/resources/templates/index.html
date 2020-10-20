@@ -13,13 +13,10 @@ SYNOPSIS
     &lt;command&gt; | curl -F 'cat=<-' <span th:text="${url}" th:remove="tag"/>
 
 DESCRIPTION
-    add <a href='http://pygments.org/docs/lexers/'>?&lt;lang&gt;</a> or <a href='http://pygments.org/docs/lexers/'>/&lt;lang&gt;</a> to resulting url for line numbers and syntax
+    add <a href='https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md'>/&lt;lang&gt;</a> to resulting url for line numbers and syntax
     highlighting
 
 EXAMPLES
-    <span style="color:#ffc000">~</span> % curl -T bin/code.js  <span th:text="${url}" th:remove="tag"/>
-       <span th:text="${url}+42" th:remove="tag"/>
-
     <span style="color:#ffc000">~</span> % cat bin/code.js | curl -F 'cat=&lt;-'  <span th:text="${url}" th:remove="tag"/>
        <span th:text="${url}+42" th:remove="tag"/>
 
@@ -33,9 +30,9 @@ SEE ALSO
     Origin(Python): <a href="https://github.com/Vim-cn/vinergy">https://github.com/Vim-cn/vinergy</a>
 
 POWERED BY
-    <a href="https://www.spring.io/" target="_blank"><img height="75px" src="/spring.svg" align="absmiddle" border="0"></a> &nbsp; <a
-        href="https://www.postgresql.org/" target="_blank"><img src="/postgresql.png" align="absmiddle" border="0"></a> &nbsp; <a
-        href="http://pygments.org" target="_blank"><img src="/pygments.png" align="absmiddle" border="0"></a>
+    <a href="https://www.spring.io/" target="_blank"><img height="50px" src="/spring.svg" align="absmiddle" border="0"></a> &nbsp; <a
+        href="https://mariadb.com/" target="_blank"><img height="50px" src="/mariadb.png" align="absmiddle" border="0"></a> &nbsp; <a
+        href="https://highlightjs.org/" target="_blank"><img height="50px" src="/hljs.png" align="absmiddle" border="0"></a>
 
                                  20 Oct 2020                         catbin(1)
 </pre>
