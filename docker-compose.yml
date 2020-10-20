@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    networks:
+      - catbin
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+
+  catbin:
+    image: "${IMAGE}"
+    container_name: catbin
+    environment:
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    expose:
+      - 8080
+    networks:
+      - catbin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catbin.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.catbin.entrypoints=https"
+      - "traefik.http.routers.catbin.tls=true"
+
+
+networks:
+  traefik:
+    external: true
+  catbin:
+
+
